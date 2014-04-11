@@ -1,5 +1,9 @@
 class AddsCounterCacheToPosts < ActiveRecord::Migration
-  def change
+  def down
+    remove_column :posts, :comments_count
+  end
+  
+  def up
     add_column :posts, :comments_count, :integer
     Post.reset_column_information
     Post.all.each do |p|
