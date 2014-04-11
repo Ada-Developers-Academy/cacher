@@ -1,10 +1,9 @@
 class PostsController < ApplicationController
   before_action :set_post, only: [:show, :edit, :update, :destroy]
-  caches_page :index
   # GET /posts
   # GET /posts.json
   def index
-    @posts = Post.includes(:user, comments: :user).paginate(per_page: 300, :page => params[:page] || 1)
+    @posts = Post.includes(:user).order("created_at desc").paginate(per_page: 50, :page => params[:page] || 1)
   end
 
   # GET /posts/1

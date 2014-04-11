@@ -1,6 +1,7 @@
 source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
+gem "puma"
 gem 'rails', '4.0.3'
 gem 'pg'
 gem 'sass-rails', '~> 4.0.0'
@@ -12,5 +13,6 @@ gem 'actionpack-action_caching'
 gem 'actionpack-page_caching'
 
 group :development do
+  gem "httparty"
   gem "faker"
 end

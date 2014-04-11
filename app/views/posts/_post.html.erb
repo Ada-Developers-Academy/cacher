@@ -1,0 +1,15 @@
+<div class='post'>
+  <h2><%= post.title %></h2>
+  
+  <div class='body'>
+    <%= post.body %>
+    <p class='muted'>
+      <small>
+        <%= post.created_at.strftime("%m/%d/%y") %> by <%= post.user.username %> 
+      </small>
+    </p>
+  </div>
+  <a href="#show-comments" class='show-comments'><%= post.comments_count %> Comments</a>
+  <div class='comments'>
+  </div>
+</div>
