@@ -1,31 +1,33 @@
 <h1>Listing posts</h1>
 <%= will_paginate @posts %>
-<% @posts.each do |post| %>
-  <div class='post'>
-    <h2><%= post.title %></h2>
-    
-    <div class='body'>
-      <%= post.body %>
-      <p class='muted'>
-        <small>
-          <%= post.created_at.strftime("%m/%d/%y") %> by <%= post.user.username %> 
-        </small>
-      </p>
-    </div>
-    <a href="#show-comments" class='show-comments'><%= post.comments.count %> Comments</a>
-    <div class='comments'>
-      <% post.comments.each do |comment| %>
-        <div class='comment'>
-          <%= comment.body %>
-          <p class='muted'>
-            <small>
-              <%= comment.created_at.strftime("%m/%d/%y") %> by <%= comment.user.username %> 
-            </small>
-          </p>
+  <% @posts.each do |post| %>
+    <div class='post'>
+      <% cache post do %>
+      <h2><%= post.title %></h2>
+      
+      <div class='body'>
+        <%= post.body %>
+        <p class='muted'>
+          <small>
+            <%= post.created_at.strftime("%m/%d/%y") %> by <%= post.user.username %> 
+          </small>
+        </p>
+      </div>
+      <a href="#show-comments" class='show-comments'><%= post.comments.count %> Comments</a>
+      <div class='comments'>
+        <% post.comments.each do |comment| %>
+          <div class='comment'>
+            <%= comment.body %>
+            <p class='muted'>
+              <small>
+                <%= comment.created_at.strftime("%m/%d/%y") %> by <%= comment.user.username %> 
+              </small>
+            </p>
 
-        </div>
-      <% end %>
-    </div>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
   </div>
 <% end %>
-<%= will_paginate @posts %>
+  <%= will_paginate @posts %>
